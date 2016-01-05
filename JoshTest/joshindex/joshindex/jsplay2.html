@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+</head>
+<style>
+    #page3{
+       text-align:bottom;
+    }
+      th, td, tr, thead{
+        padding: 15px;
+        text-align:center;
+        color:white;
+    }
+    .colorclass{
+         background-image:url("http://www.weepingtiledirect.com/Grey-website-background-1024x640_1.jpg");  
+           }
+    .header{
+        font-size: 75px;
+        text-align: left;
+        font-family:times;
+        color:white;
+    }
+
+
+</style>
+
+
+<body>
+    <h1 id="myheader" class='hidden'>Function Play</h1>
+    <div class="col-md-4">
+        <div id="page3">
+            <div class="input-group" style="width:200px;">
+                <span class="input-group-addon control-label">Companies</span>
+                <select id="Company" class="select2 Company" style="width:100%;"></select>
+            </div>
+        </div>
+        <div id="page4">
+            <div class="input-group" style="width:200px;">
+                <span class="input-group-addon control-label">People</span>
+                <select id="People" class="select2" style="width:100%;" disabled="disabled"></select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" id="middleDiv">
+        <button id="peeps_btn"  style="width:200px;height:25px;" >Want Peeps CLick Here First</button>
+    </div>
+    <div class="col-md-4">
+        <table id='mytable' class='table; hidden'>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody id = 'mytbody'>
+          </tbody>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $('#People').attr('disabled', true);
+    var myPeople = [
+            {id:1, first_name: 'Steve', last_name: 'Washam', age: 34, company: 'vcreative'},
+            {id:2, first_name: 'David', last_name: 'Singleton', age: 33, company: 'vcreative'},
+            {id:3, first_name: 'Chris', last_name: 'Ford', age: 30, company: 'vcreative'},
+            {id:4, first_name: 'Josh', last_name: 'Schauer', age: 30, company: 'Modot'},
+            {id:5, first_name: 'Brian', last_name: 'Hulett', age: 38, company: 'Modot'},
+            {id:6, first_name: 'Brad', last_name: 'Pefferman', age: 40, company: 'Modot'},
+            {id:7, first_name: 'Terah', last_name: 'Washam', age: 33, company: 'mu', gender:'woman'},
+            {id:8, first_name: 'Jenn', last_name: 'Berry', age: 32, company: 'mu', gender:'woman'}
+        ];
+
+    var company = [];
+    var vc = [];
+    var modot = [];
+    var mu = [];
+    var asspeople = [];
+    var selected_company = [];
+    var tableIds = [];
+    $.each(myPeople, function(k,v){
+        
+        var obj={id:v.company, text:v.company};
+            if(selected_company.indexOf(v.company) == -1 ){
+                selected_company.push(v.company);
+                company.push(obj);
+
+            }
+           
+    asspeople[v.id] = v;
+    });
+
+
+
+
+
+      // $.each(myPeople, function(k,v){
+      //   if(v.company == 'vcreative'){
+      //       vc.push({id:v.id, text:v.first_name});
+      //   }
+      //   else if(v.company == 'Modot'){
+      //       mod(ot.push({id:v.id, text:v.first_name});
+      //   }
+      //   else {
+      //       mu.push({id:v.id, text:v.first_name});
+      //   }
+      // });
+
+       $("#People").select2();
+        $('.Company').select2({
+            data:company
+        })
+        .change(function(e){
+            $("#People").select2().empty();
+            var data = $('.Company').select2("data");
+            var p_company = data[0].id;
+            var p_data = [];
+            $.each(myPeople, function(k, v){
+                if(v.company == p_company){
+                    p_data.push({id:parseInt(v.id), text:v.first_name});
+
+                }
+            });
+
+           
+            $("#People").select2({
+                data:p_data
+            })
+         
+        });
+    $(document).delegate('#peeps_btn', 'click', function(event){
+        $('#People').attr('disabled', false);
+        $('#mytable').removeClass('hidden');
+        $('body').addClass('colorclass');
+        $('#myheader').removeClass('hidden').addClass('header');
+    });
+
+
+    $(document).delegate('#People', 'change', function(event){
+        var data = $('#People').select2("data");
+        var person_id = data[0].id;
+        var unselected = [];
+        $.each(myPeople, function(k, v){
+            if(v.id == person_id){
+                if(tableIds.indexOf(v.id) == -1){
+                    tableIds.push(v.id);
+                    $('#mytbody').append('<tr><td>' + v.first_name + '</td><td>' + v.last_name + '</td><td>' + v.age +'</td></tr>'); 
+                }
+               
+            }
+
+            else {
+                if(tableIds.indexOf(v.id) == -1){
+                    unselected.push(v.first_name); 
+                }
+               
+            }
+
+        });
+        if(unselected.length > 0){
+            toastr.warning(unselected.join());
+        };
+
+    });
+           
+
+
+    $(".Company").trigger('change');
+
+
+     // var job_titles = [];
+    // var url = 'myDatabase.php';
+    // $.ajax({
+    //     url: url,
+    //     dataType: 'json', 
+    //     success:function(data){
+    //         $.each(data, function(k, v){ 
+    //             $.each(v.people, function(key, val){
+    //                 $.each(v.salaries, function(i, r){
+    //                     // console.log('job: ' + val.job);
+    //                     // console.log('i: ' + i);
+    //                     if(val.job == i){
+    //                         var salary = r.starting.replace(/,/g , "");
+    //                         console.log(salary);
+    //                         if(parseInt(salary) < 300000){
+    //                             console.log('here');
+    //                             job_titles.push(key);
+    //                         }  
+    //                     }       
+    //                 }); 
+    //             });    
+    //         });
+    //         console.log(job_titles);
+    //         $.each(job_titles, function(keys, vals){
+    //             $('#middleDiv').append('<div>' + vals + '</div>');  
+    //         });
+    //     }
+    // });  
+
+    // I made one select box with the selector name Company, I appeneded just the company names to the select box, however I only
+    // want the company name in ther one time, not multiple times..... I am assuming it is looping through the array and everytime
+    // it see's a "company" name it puts it in the select box because i told it to... Just cant figure out how to stop it 
+    // yet send all of the people in that company with it...... I am aiming to select the compnay name then see the people employed
+    // by that company...... ON a good note i created a select box that has the name company and companies are actually in it!!!
+    //
+
+
+
+
+</script>

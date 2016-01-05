@@ -1,0 +1,133 @@
+<html>
+    <head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+        <link rel="stylesheet" type="text/css" href="Css/mycss.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  	</head>
+	<body>
+	    <nav class="navbar navbar-inverse navbar-fixed-top" "padding:25px">
+			<div class="container-fluid">
+			    <div class="navbar-header">
+			        <a class="navbar-brand" href="joshindex.html">Josh Schauer's Resume</a>
+			    </div>
+	         	<div>
+	         		<ul class="nav navbar-nav">
+	         			<li class="active"><a href="../joshindex.html">Home</a></li>
+	         			<li><a href="modotcareer.html">MoDOT Career</a></li>
+	         			<li><a href="cityofmoberlycareer.html">City of Moberly Career</a></li>
+	         			<li><a href="gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
+	         		</ul>
+	         	</div>
+			</div>
+		</nav>
+        <div class="col-md-10">
+        	<button id="boss man" class="jobButtn">Modot People</button>
+        	<button id="sales" class="jobButtn">Sales People</button>
+        	<button id="jrDev" class="jobButtn">Aspiring Developer</button>
+        	<button id="MoBoss" class="jobButtn">Shed Supervisor</button>
+        	<button id="nothing" class="jobButtn">Some dumb button</button>
+        </div>
+        <div class="col-md-2"></div>
+	</body>
+</html>
+<script>4
+var Salaries = [];
+var Staff = [];
+var vCreativePeeps= [];
+var ModotPeeps= [];
+var HD=[];
+var Sales= [];
+var Developers= [];
+var jrDev= [];
+var ShednumberOnes= [];
+var url = 'myDatabase.php';
+$.ajax({
+	url: url, 
+	dataType: 'json',
+	success:function(data){
+		$.each(data, function(k, v){           //this function puts each person into its specified var by compnay
+			                                   // use the vars to loop through the people and display there name and salary
+			//console.log(k);
+			if(k === 'Modot'){
+				console.log('here');
+					ModotPeeps.push(v);
+				}
+			
+			 else if(k === 'vcreative'){
+			 	vCreativePeeps.push(v);
+			};
+			// console.log(vCreativePeeps);
+			// console.log(ModotPeeps);
+			// $.each(k, function(key, val){
+				
+			
+			// 	else if(val.job == 'HD'){
+			// 		HD.push(key);
+			// 	}
+			// 	else if(val.job == 'Sales'){
+			// 		Sales.push(key);
+			// 	}
+			// 	else if(val.job == 'Sign guy'){
+			// 		jrDev.push(key, val);
+			// 	}
+			// 	else if( val.job == 'boss man'){
+			// 		ShednumberOnes.push(key);
+			// 	}
+			// })
+					
+			});
+				$.each(ModotPeeps, function(k, v){
+					
+					Salaries.push(v.salaries);
+					Staff.push(v.people);
+				});
+					$.each(Staff, function(k, v){
+						console.log(Salaries);
+					})
+
+		}
+	});
+
+	
+	// $(document).delegate('#dev', 'click', function(event){
+	// 	alert(Developers);
+
+	// });
+	// $(document).delegate('#sales', 'click', function(event){
+	// 	alert(Sales)
+	// });
+	// $(document).delegate('#jrDev', 'click', function(event){
+	// 	alert(jrDev)
+	// });
+	// $(document).delegate('#MoBoss', 'click', function(event){
+	// 	alert(ShednumberOnes)
+	// });
+	$(document).delegate('.jobButtn', 'click', function(event){
+		var id = $(this).attr('id');
+		switch(id){
+			case 'boss man': 
+				alert(ModotPeeps);
+				break;
+			case 'sales':
+				alert(Sales);
+				break;
+			case 'jrDev':
+				alert(jrDev);
+				break;
+			case 'MoBoss':
+				alert(ShednumberOnes);
+				break;
+			default:
+				alert("Nope");
+				break;
+		}
+	});
+
+
+	
+</script>
+
+ 

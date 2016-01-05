@@ -1,0 +1,174 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="joshindex/Css/mycss.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet"/>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    </head>
+  
+    <body>
+	    <h1 class="header1">About Me</h1>
+		<nav class="navbar navbar-inverse navbar-fixed-top" "padding:25px">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <a class="navbar-brand" href="joshindex.html">Josh Schauer's Resume</a>
+		        </div>
+		        <div>
+		         	<ul class="nav navbar-nav">
+	         			<li class="active"><a href="joshindex.html">Home</a></li>
+	         			<li><a href="joshindex/modotcareer.html">MoDOT Career</a></li>
+	         			<li><a href="joshindex/cityofmoberlycareer.html">City of Moberly Career</a></li>
+	         			<li><a href="joshindex/gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
+                        <li><a href="joshindex/quicklearner.html">Messin Around</a></li>
+		         	</ul>
+		         </div>
+		    </div>
+		</nav>
+		<div class="container-fluid">
+			<div class="row"></div>
+	 	 	<div class="col-md-2" style="background-color:light grey">
+                <div class="dropdown">
+                    <button class="dropbtn">Check This Out</button>
+                    <div class="dropdown-content">
+                        <a href="joshindex/quicklearner.html">Quick Learner</a>
+                        <a href="joshindex/peopleoriented.html">People Oriented</a>
+                        <a href="joshindex/loyal.html">Loyal</a>
+                    </div>
+                </div>
+	 	 	</div>
+            <div class="col-md-3">
+                <img src="https://scontent.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11078225_10203843357540787_1542408740864660322_n.jpg?oh=40c82409d56a67afbfb04da0dc11ff6b&oe=56B40194"  class="img-rounded" style="width:250px; height:400px;align:left">
+            </div>
+ 	 		<div class="col-md-7" id='mainParagraph' style="background-color:light grey" "color:white"></div>  
+        </div>
+    </body>
+</html>
+<script>
+    var introWords = 'I just recently completed my third college course.  I have only begun my journey as a college student, where I plan to pursue a degree\ in computer science with a minor in Cyber Security. I am married with two beautiful kis, a girl(5) and a boy(2). I love spending time with my\ family and watching the best team in the NFL play football, the GREENBAY PACKERS.  I am excited to begin a new career as a software \ developer.  This basic web page is proof of the strides I have made to achieve that goal.  As of one week ago I knew very little, ok almost\ nothing about coding.<br>';
+    $('#mainParagraph').html(introWords);
+
+
+
+// When we look at arrays, they won't always be in a format like this. I made this one readable so you can see the various arrays/objects within
+    var giant_array = {
+        vcreative: {
+            people: {
+                'Steve': {
+                    job: 'Dev'
+                },
+                'David': {
+                    job: 'Dev'
+                },
+                'Jinny': {
+                    job: 'THE BOSS'
+                },
+                'John': {
+                    job: 'The bosses husband'
+                },
+                'Melissa': {
+                    job: 'Sales'
+                }
+            },
+            salaries: {
+                'Dev': {
+                    starting: '300,000',
+                    medium: '500,000',
+                    experienced: '1,000,000'
+                },
+                'HD': {
+                    starting: '500,000',
+                    medium: '1,000,000',
+                    experienced: '2,000,000'
+                },
+                'Sales': {
+                    starting: '1,000,000',
+                    medium: '2,000,000',
+                    experienced: '5,000,000'
+                }
+
+            }
+        },
+        Modot: {
+            people: {
+                'Josh': {
+                    job: 'Sign guy'
+                },
+                'B-Rad': {
+                    job: 'Supervisor somewhere else'
+                },
+                'Sketterer': {
+                    job: 'Como One'
+                }
+            },
+            salaries: {
+                'grunt': {
+                    starting: '3000',
+                    medium: '5000',
+                    experienced: '10,000'
+                },
+                'Sign guy': {
+                    starting: '20,000',
+                    medium: '25,000',
+                    experienced: '30,000'
+                },
+                'boss man': {
+                    starting: '30,000',
+                    medium: '35,000',
+                    experienced: '40,000'
+                }
+
+            }
+        }
+    };
+    // Just create a button on you page somewhere and call this function to get info. I went ahead and created this function
+    // so you could see how to iterate an array like this one and pull out what you are looking for. Use this example and see
+        // if you can
+        $(document).delegate('.joshbtn', 'click', function(){
+            
+        });
+    // function getJoshInfo() {
+    //     $.each(giant_array, function(k,v) {
+    //         if(k == 'Modot') {
+    //             $.each(v.people, function(key,val) {
+    //                 if(key == 'Josh') {
+    //                     $.each(v.salaries, function(i, value) {
+    //                         if(i == val.job) {
+    //                             alert(key + ' makes $' + value.experienced + ' per year.');
+    //                         }
+    //                     });
+    //                 }
+    //             });
+    //         }
+    //     });   
+    // };
+
+    // function getJoshInfo(){
+    //     $.each(giant_array, function(k, v){
+    //         $.each(v.people, function(key, val){
+    //             $.each(v.salaries, function(i, r){
+    //                 if(val. job == i) {
+    //                     sal = '$' + r.medium; 
+    //                 }
+    //             })
+    //             $('#mytbody').append('<tr><td>' + key + '</td><td>' + val.job + '</td><td>' + sal + '</td></tr>');
+    //         })
+    //     })
+    // }
+    // you can either have your button click call like this  <button class="joshbtn" onclick="getJoshInfo()">Get my info</button>
+    // or you can create a delegate like this
+
+    //  <button class="joshbtn">Get my info</button>
+
+    // $(document).delegate('.joshbtn', 'click', function(event) {
+    //     getJoshInfo();
+    // });
+
+    // or any way you want really
+   
+    // It will also help you if you leave this console.log in so you can see the actual array in the console.  Just remember:
+    // console.log is you friend, you can see exactly where you are with that
+</script>

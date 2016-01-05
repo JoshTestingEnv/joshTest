@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript"> </script>
+</head>
+<body>
+<p>hello</p>
+<p id='fortune'></p>
+<p id='childrensage'></p>
+
+
+
+
+
+<h1 id="myHeading">Debug me please</h1>
+<div class="row">
+    <div class="col-md-6">
+        <!-- Click each button in order and attach the data to the main button for use later -->
+        <button class="btn btn-danger info_btn name_btn" data-name="Josh Schauer" data-company="Modot" data-job="Sign Guy">Get Josh name</button>
+        <br>
+        <!-- Step 2 <button class="btn btn-default info_btn co_btn" data-company="Modot">Get Josh company</button>
+        <br>
+        Step 3 <button class="btn btn-primary info_btn job_btn" data-job="Sign Guy">Get Josh Job</button>
+        <br> -->
+        <button id="main_btn" class="btn btn-success" style="width:100px;height:100px;" disabled="disabled">Cant click me!</button>   
+        <br>
+    </div>
+    <div class="col-md-6">
+        <div class="name_div">
+            <label>Name&nbsp;</label><input id="name_input" />
+        </div>
+        <div class="name_div">
+            <label>Company&nbsp;</label><input id="company_input" />
+        </div>
+        <div class="name_div">
+            <label>Job&nbsp;</label><input id="job_input" />
+        </div>
+        <button class="save_btn">Save Inputs</button>
+    </div>
+</div>
+</body>
+</html>
+<script>
+   
+
+
+// This is one way to do it, usually if the class changes on the button. You may want to use that same button for something else. You could change what extra class is on the button and have it do something totally different.
+$(document).delegate('.info_btn', 'click', function(event) {
+    if($(this).hasClass('name_btn')) {
+        var name = $(this).data('name');
+        $('#main_btn').data('name', name);
+        $(this).removeClass('name_btn').addClass('co_btn');
+        $(this).html('Get Josh Company');
+    }
+    else if($(this).hasClass('co_btn')) {
+        var company = $(this).data('company');
+        $('#main_btn').data('company', company);
+        $(this).removeClass('co_btn').addClass('job_btn');
+        $(this).html('Get Josh Job');
+    }
+    else if($(this).hasClass('job_btn')) {
+        var job = $(this).data('job');
+        $('#main_btn').data('job', job);
+        $(this).removeClass('job_btn');
+        $(this).html('Stop clicking me.');
+        $('#main_btn')
+            .attr('disabled', false)
+            .html('You can click me now!');
+    }
+    else {
+        alert('I said quit! Now go click the big button! If you havent already');
+    }
+});
+
+$(document).delegate('#main_btn', 'click', function(event) {
+    var name = $(this).data('name'),
+        company = $(this).data('company'),
+        job = $(this).data('job');
+    $('#myHeading').html('My name is ' + name + ' and I am the ' + job + ' at ' + company + '!');
+});
+
+$(document).delegate('.save_btn', 'click', function(event) {
+    var name = $('#name_input').val(),
+        company = $('#company_input').val(),
+        job = $('#job_input').val();
+    alert('My name is ' + name + ' and I am the ' + job + ' at ' + company + '!');
+});
+
+
+// This is another way to get data from one place to another
+
+// $(document).delegate('#main_btn', 'click', function(event) {
+//     var name = $('.name_btn').data('name');
+//     var company = $('.co_btn').data('company');
+//     var job = $('.job_btn').data('job');
+//     alert('My name is ' + name + ' and I am the ' + job + ' at ' + company + '!');
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+		// 				var children='2';
+		// 				var spouse='Jamie';
+		// 				var home='Centralia';
+		// 				var jobTitle='Jr Software Developer';
+		// 				var future= 'You will be a ' + jobTitle + ' in ' + home + ' and married to ' + spouse + ' with ' + children + ' kids. ';
+		// 					document.getElementById('fortune').innerHTML=future;
+		// 				var currentYear='2015';
+		// 				var beckYear='2013';
+		// 				var bryYear='2010';
+		// 				var myYear='1988';
+		// 				var beckAge= currentYear - beckYear;
+		// 				var bryAge= currentYear - bryYear;
+		// 				var myAge= currentYear - myYear;
+		// 				var kidsAge= 'Beckham is ' + beckAge + ' Brylea is ' + bryAge + '. I am '  + myAge + '.';
+		// 				   document.getElementById('childrensage').innerHTML=kidsAge;
+					  
+		// $.each(players, function(k, v){
+		//  		// nested if statements, 
+		//  });
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!--// <div id="page4">
+//     <div class="input-group" style="width: 200px;">
+//         <span class="input-group-addon control-label">MODOT</span>
+//         <select id="MODOT" class="select2" style="width:100%;"></select>
+//     </div>
+// </div>
+// <div id="page5">
+//     <div class="input-group" style="width: 200px;">
+//         <span class="input-group-addon control-label">MU</span>
+//         <select id="MU" class="select2" style="width:100%;"></select>
+//     </div>
+// </div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+ <!--// $('#MODOT').select2({
+    //     data:modot
+    // })
+    // .change(function(e){
+    //     var data = $(this).select2('data');
+    //     var id = data[0].id;
+    //     var info = asspeople[id];
+    //     toastr.success(info.first_name + ' is ' + info.age, 'Did you know that');
+    // });
+
+    // $('#MU').select2({
+    //     data:mu
+    //   })
+    // .change(function(e){
+    //     var data = $(this).select2('data');
+    //     var id = data[0].id;
+    //     var info = asspeople[id];
+    //     toastr.success(info.first_name + ' is ' + info.age, 'Did you know that');
+    // });-->
+
+
+
+
+
+
+
+
+
+        else if(person_id == 3){
+                toastr.success('Mr. Ford is 30!');
+
+            }
+            else if(person_id == 4){
+                toastr.success('Mr. Schauer is 30!');
+
+            }
+            else if(person_id == 5){
+                toastr.success('Mr. Hulett is 38!');
+
+            }
+            else if(person_id == 6){
+                toastr.success('Mr. Pefferman is 40!');
+
+            }
+            else if(person_id == 7){
+                toastr.success('Mrs. Washam is 33!');
+
+            }
+            else if(person_id == 8){
+                toastr.success('Ms. Berry is 32!');
+
+            } 

@@ -1,0 +1,85 @@
+
+<!-- Debug these scripts
+- Inclued this script as the body in your index.html page
+- We want the button clicks to call the functions and do what is specified
+- We also want all buttons to be green instead whatever colors they currently are
+- Be sure to have firebug open and the console tab active
+ -->
+<h1>Debug me please</h1>
+
+<button class="btn btn-danger get_num_btn">Get Number</button>
+
+<button class="btn btn-default get_name_btn">Get Name</button>
+
+<button class="btn btn-primary get_job_btn">Get Job</button>
+	
+
+<script type="text/javascript">
+	// Button click for get number
+	$(document).delegate('get_num_btn', 'click', function(event) {
+		get_num(false);
+	});
+
+	// On click for get name 
+	$(document).delegate('.get_name_btn', 'click', function(event) {
+		var name;
+		var names = ['josh','Steve','David','chris'];
+		get_name(name);
+	});
+
+	// On click for get job, dont change any of the vars
+	$(document).delegate('#get_job_btn', 'click', function(event) {
+		var num1 = 100/4-12;
+		var num2 = 100/5+2;
+		var num3 = 2*2*6/4;
+		var num4 = num1+num3;
+		var num5 = num2-num3-4;
+		get_job();
+	});
+
+	// This function should alert the number 3 based on it's index in the nums array
+	function get_num(isnum) {
+		var num_array = [];
+		var nums = [1,2,3,4,5,6,7,8,9];
+		if(isnum == true) {
+			$.each(nums, function(key,value) {
+				if(key == 3) {
+					num_array.push(value);
+				}
+			});
+			alert(num_array);
+		}
+		else {
+			alert('Sorry, try again');
+		}
+	}
+
+	// This function should alert 'Yep, thats my name, dont wear it out'
+	function get_name(names) {
+		names.forEach(function(name) {
+			if(name = 'Josh') {
+				alert('Yep, thats my name, dont wear it out');
+			}
+		});
+	}
+
+	// This function should have only one alert, and it should say the job title you're hoping to get
+	// Dont change any of the case numbers
+	function get_job(number) {
+		switch(number) {
+			case 9:  // don't change me
+			case 10: // or me
+			case 11: // or me
+				alert('You want to be a septic tank pumper?');
+				break;
+			case 12: // or me
+				alert('You want to be a Jr Software Developer!');
+			default: 
+				alert('I dont need no stinking job!');
+				break;
+		}
+	}
+	
+</script>
+
+
