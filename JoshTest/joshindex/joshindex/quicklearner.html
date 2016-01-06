@@ -19,18 +19,32 @@
 	         			<li><a href="modotcareer.html">MoDOT Career</a></li>
 	         			<li><a href="cityofmoberlycareer.html">City of Moberly Career</a></li>
 	         			<li><a href="gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
+	         			 <li><a href="jsplay2.html">Messin Around</a></li>
 	         		</ul>
 	         	</div>
 			</div>
 		</nav>
-        <div class="col-md-10">
-        	<button id="Developers" class="jobButtn">Developers</button>
-        	<button id="sales" class="jobButtn">Sales People</button>
-        	<button id="jrDev" class="jobButtn">Aspiring Developer</button>
-        	<button id="MoBoss" class="jobButtn">Shed Supervisor</button>
-        	<button id="nothing" class="jobButtn">Some dumb button</button>
+        <div class="col-md-2">
+        	<button id="Developers" class="jobButtn">Developers</button><br>
+        	<button id="sales" class="jobButtn">Sales People</button><br>
+        	<button id="jrDev" class="jobButtn">Aspiring Developer</button><br>
+        	<button id="MoBoss" class="jobButtn">Shed Supervisor</button><br>
+        	<button id="nothing" class="jobButtn">Some dumb button</button><br>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-10">
+        	<table id='mytable' class='table'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Starting Salary</th>
+                    <th>Medium Salary</th>
+                    <th>Experienced Salary</th>
+                </tr>
+            </thead>
+            <tbody id = 'tableStuff'>
+          </tbody>
+        </table>
+        </div>
 	</body>
 </html>
 <script>4
@@ -84,42 +98,43 @@ $.ajax({
 			$.each(vCreativePeeps, function(k, v){
 				$.each(v.people, function(key,val){
 					if(val.job == 'Dev'){
-						alertText = alertText + key + ' makes $' + v.salaries[val.job].starting + ' per year \n';
+						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+							'</td></tr>');
 					}
 				});
 			});
-				alert(alertText);
+				
 				break;
 			case 'sales':
 			$.each(vCreativePeeps, function(k, v){
 				$.each(v.people, function(key, val){
 					if(val.job == 'Sales'){
-						alertText = alertText + key + ' makes $' + v.salaries[val.job].starting + ' per year \n';
+						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+							'</td></tr>');
 					}
 				});
 			
 			});
-				alert(alertText);
 				break;
 			case 'jrDev':
 			$.each(ModotPeeps, function(k, v){
 				$.each(v.people, function(key, val){
 					if(val.job == 'Sign guy'){
-						alertText = alertText +  key + ' makes $' + v.salaries[val.job].turnedDeveloper + ' per year \n';
+						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+							'</td></tr>');
 					}
 				});	
 			});
-				alert(alertText);
 				break;
 			case 'MoBoss':
 			$.each(ModotPeeps, function(k, v){
 				$.each(v.people, function(key, val){
 					if(val.job == 'boss man'){
-						alertText = alertText +  key + ' makes $' + v.salaries[val.job].medium + ' per year \n';
+						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+							'</td></tr>');
 					}
-				})
-			})
-				alert(alertText);
+				});
+			});
 				break;
 			default:
 				alert("Nope");
