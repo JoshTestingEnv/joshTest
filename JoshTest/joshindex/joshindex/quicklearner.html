@@ -51,12 +51,14 @@ $.ajax({
 		$.each(data, function(k, v){         
 			//console.log(k);
 			if(k === 'Modot'){
-				console.log('here');
 					ModotPeeps.push(v);
 				}
 			
 			 else if(k === 'vcreative'){
 			 	vCreativePeeps.push(v);	
+			 	$.each(v.people, function(k, v){
+
+			 	})
 			}	
 		});
 				// $.each(ModotPeeps, function(k, v){
@@ -87,10 +89,9 @@ $.ajax({
 	// });
 	$(document).delegate('.jobButtn', 'click', function(event){
 		var id = $(this).attr('id');
+		var alertText = '';
 		switch(id){
 			case 'boss man': 
-			console.log(ModotPeeps);
-			var alertText = '';
 			// $.each(ModotPeeps, function(k, v){
 			// 	$.each(v.people, function(key,val){
 			// 		$.each(v.salaries, function(i, record){
@@ -109,9 +110,20 @@ $.ajax({
 				alert(alertText);
 				break;
 			case 'sales':
-				alert(Sales);
+			$.each(vCreativePeeps, function(k, v){
+				$.each(v.people, function(key, val){
+					if(val.job == 'Sales'){
+						alertText = alertText + key + '\n';
+					}
+				});
+			
+			});
+				alert(alertText);
 				break;
 			case 'jrDev':
+			$.each(ModotPeeps, function(k, v){
+				
+			})
 				alert(jrDev);
 				break;
 			case 'MoBoss':
