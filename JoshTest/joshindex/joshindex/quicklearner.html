@@ -48,8 +48,7 @@ $.ajax({
 	url: url, 
 	dataType: 'json',
 	success:function(data){
-		$.each(data, function(k, v){           //this function puts each person into its specified var by compnay
-			                                   // use the vars to loop through the people and display there name and salary
+		$.each(data, function(k, v){         
 			//console.log(k);
 			if(k === 'Modot'){
 				console.log('here');
@@ -57,37 +56,17 @@ $.ajax({
 				}
 			
 			 else if(k === 'vcreative'){
-			 	vCreativePeeps.push(v);
-			 	
-			};
-			// console.log(vCreativePeeps);
-			// console.log(ModotPeeps);
-			// $.each(k, function(key, val){
-				
-			
-			// 	else if(val.job == 'HD'){
-			// 		HD.push(key);
-			// 	}
-			// 	else if(val.job == 'Sales'){
-			// 		Sales.push(key);
-			// 	}
-			// 	else if(val.job == 'Sign guy'){
-			// 		jrDev.push(key, val);
-			// 	}
-			// 	else if( val.job == 'boss man'){
-			// 		ShednumberOnes.push(key);
-			// 	}
-			// })
+			 	vCreativePeeps.push(v);	
+			}	
+		});
+				// $.each(ModotPeeps, function(k, v){
 					
-			});
-				$.each(ModotPeeps, function(k, v){
-					
-					Salaries.push(v.salaries);
-					Staff.push(v.people);
-				});
-					$.each(Staff, function(k, v){
-						console.log(Salaries);
-					})
+				// 	Salaries.push(v.salaries);
+				// 	Staff.push(v.people);
+				// });
+				// 	$.each(Staff, function(k, v){
+				// 		console.log(Salaries);
+				// 	})
 
 		}
 	});
@@ -110,7 +89,24 @@ $.ajax({
 		var id = $(this).attr('id');
 		switch(id){
 			case 'boss man': 
-				alert(ModotPeeps);
+			console.log(ModotPeeps);
+			var alertText = '';
+			// $.each(ModotPeeps, function(k, v){
+			// 	$.each(v.people, function(key,val){
+			// 		$.each(v.salaries, function(i, record){
+			// 			if(val.job == i){
+			// 				alertText = alertText + key + ' makes ' + record.starting + ' per year \n';
+							
+			// 			}
+			// 		});
+			// 	});
+			// });
+			$.each(ModotPeeps, function(k, v){
+				$.each(v.people, function(key,val){
+				alertText = alertText + key + ' makes ' + v.salaries[val.job].starting + ' per year \n';
+				});
+			});
+				alert(alertText);
 				break;
 			case 'sales':
 				alert(Sales);
