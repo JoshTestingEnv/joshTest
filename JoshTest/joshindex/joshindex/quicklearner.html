@@ -24,7 +24,7 @@
 			</div>
 		</nav>
         <div class="col-md-10">
-        	<button id="boss man" class="jobButtn">Modot People</button>
+        	<button id="Developers" class="jobButtn">Developers</button>
         	<button id="sales" class="jobButtn">Sales People</button>
         	<button id="jrDev" class="jobButtn">Aspiring Developer</button>
         	<button id="MoBoss" class="jobButtn">Shed Supervisor</button>
@@ -34,8 +34,6 @@
 	</body>
 </html>
 <script>4
-var Salaries = [];
-var Staff = [];
 var vCreativePeeps= [];
 var ModotPeeps= [];
 var HD=[];
@@ -57,21 +55,11 @@ $.ajax({
 			 else if(k === 'vcreative'){
 			 	vCreativePeeps.push(v);	
 			 	$.each(v.people, function(k, v){
-
-			 	})
-			}	
+			 		})
+				}	
 		});
-				// $.each(ModotPeeps, function(k, v){
-					
-				// 	Salaries.push(v.salaries);
-				// 	Staff.push(v.people);
-				// });
-				// 	$.each(Staff, function(k, v){
-				// 		console.log(Salaries);
-				// 	})
-
-		}
-	});
+	}
+});
 
 	
 	// $(document).delegate('#dev', 'click', function(event){
@@ -91,20 +79,13 @@ $.ajax({
 		var id = $(this).attr('id');
 		var alertText = '';
 		switch(id){
-			case 'boss man': 
-			// $.each(ModotPeeps, function(k, v){
-			// 	$.each(v.people, function(key,val){
-			// 		$.each(v.salaries, function(i, record){
-			// 			if(val.job == i){
-			// 				alertText = alertText + key + ' makes ' + record.starting + ' per year \n';
-							
-			// 			}
-			// 		});
-			// 	});
-			// });
-			$.each(ModotPeeps, function(k, v){
+			case 'Developers':
+		
+			$.each(vCreativePeeps, function(k, v){
 				$.each(v.people, function(key,val){
-				alertText = alertText + key + ' makes ' + v.salaries[val.job].starting + ' per year \n';
+					if(val.job == 'Dev'){
+						alertText = alertText + key + ' makes $' + v.salaries[val.job].starting + ' per year \n';
+					}
 				});
 			});
 				alert(alertText);
@@ -113,7 +94,7 @@ $.ajax({
 			$.each(vCreativePeeps, function(k, v){
 				$.each(v.people, function(key, val){
 					if(val.job == 'Sales'){
-						alertText = alertText + key + '\n';
+						alertText = alertText + key + ' makes $' + v.salaries[val.job].starting + ' per year \n';
 					}
 				});
 			
@@ -122,12 +103,23 @@ $.ajax({
 				break;
 			case 'jrDev':
 			$.each(ModotPeeps, function(k, v){
-				
-			})
-				alert(jrDev);
+				$.each(v.people, function(key, val){
+					if(val.job == 'Sign guy'){
+						alertText = alertText +  key + ' makes $' + v.salaries[val.job].turnedDeveloper + ' per year \n';
+					}
+				});	
+			});
+				alert(alertText);
 				break;
 			case 'MoBoss':
-				alert(ShednumberOnes);
+			$.each(ModotPeeps, function(k, v){
+				$.each(v.people, function(key, val){
+					if(val.job == 'boss man'){
+						alertText = alertText +  key + ' makes $' + v.salaries[val.job].medium + ' per year \n';
+					}
+				})
+			})
+				alert(alertText);
 				break;
 			default:
 				alert("Nope");

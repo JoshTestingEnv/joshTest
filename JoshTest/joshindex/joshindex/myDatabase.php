@@ -58,7 +58,8 @@
                 'Sign guy' => array(
                     'starting' => '20,000',
                     'medium' => '25,000',
-                    'experienced' => '30,000'
+                    'experienced' => '30,000',
+                    'turnedDeveloper' => '37,000'
                 ),
                 'boss man' => array(
                     'starting' => '30,000',
