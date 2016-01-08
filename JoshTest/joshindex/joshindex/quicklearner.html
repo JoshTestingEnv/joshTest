@@ -35,33 +35,33 @@
         	<button id="MoBoss" class="jobButtn">Shed Supervisor</button><br>
         	<button type="button" class="jobButtn" data-toggle="modal" data-target="#adNameSalary">Add Name and Salary</button>
         </div>
-        <div class="modal fade" id="adNameSalary"  role="dialog">
+        <div class="modal fade" id="adNameSalary"  role="dialog" data-backdrop="static">
         	<div class="modal-dialog">
         		<div class="modal-content">
         			<div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal">&times;</button>
+        				<button type="button" class="close salaryClose" data-dismiss="modal">&times;</button>
         					<h4 class="modal-title">New Job Title</h4>
         			</div>
         			<div class="modal-body">
         				<div class="form-group">
         					<label for="name">Name</label>
-        					<input type="text" class="form-control" id="Name">
+        					<input type="text" class="form-control modalInput required" id="SalaryName">
         				</div>
         				<div class="form-group">
         					<label for="startingSalary">Starting Salary</label>.
-        					<input type="text" class="form-control" id="StartingSalary">
+        					<input type="text" class="form-control modalInput required" id="StartingSalary">
         				</div>
         				<div class="form-group">
         					<label for="mediumSalary">Medium Salary</label>.
-        					<input type="text" class="form-control" id="MediumSalary">
+        					<input type="text" class="form-control modalInput" id="MediumSalary">
         				</div>
         				<div class="form-group">
         					<label for="experiencedSalary">Experienced Salary</label>.
-        					<input type="text" class="form-control" id="ExperiencedSalary">
+        					<input type="text" class="form-control modalInput" id="ExperiencedSalary">
         				</div>
         			</div>
         			<div class="modal-footer">
-        				<button type="button" id='submitBtn' class="btn btn-default" data-dismiss="modal">Submit</button>
+        				<button type="button" id='submitBtn' class="btn btn-default">Submit</button>
         			</div>
         		</div>
         	</div>
@@ -176,10 +176,51 @@ $.ajax({
 				break;
 		}
 	});
-	$(document).delegate('#submitBtn', 'click', function(event){
-		$('#tableStuff').append('<tr><td>' + '#Name' + '</td><td>' + '#StartingSalary' + '</td><td>' + '#MediumSalary' + '</td><td>'
-								+ '#ExperiencedSalary' + '</td></tr>');
+	$(document).delegate('.salaryClose', 'click', function(event){
+		$('.modalInput').val("");
 	});
+	$(document).delegate('#submitBtn', 'click', function(event){
+		if(Validate('adNameSalary') == false){
+			toastr.error('Missing Required Field');
+		}
+		else{
+			var SalaryName = 'Undefined';
+			var StartingSalary = 'Undefined';
+			var MediumSalary = 'Undefined';
+			var ExperiencedSalary = 'Undefined';
+			if($('#SalaryName').val() != ''){
+				SalaryName = $('#SalaryName').val();
+			}
+			if($('#StartingSalary').val() != ''){
+				StartingSalary = $('#StartingSalary').val();
+			}
+			if($('#MediumSalary').val() != ''){
+				MediumSalary = $('#MediumSalary').val();
+			}
+			if($('#ExperiencedSalary').val() != ''){
+				ExperiencedSalary = $('#ExperiencedSalary').val();
+			}
+			$('#tableStuff').append('<tr><td>' + SalaryName + '</td><td>' + StartingSalary + '</td><td>' + MediumSalary + '</td><td>' + ExperiencedSalary + '</td></tr>');
+			$('.salaryClose').click();
+		}
+	
+	});
+	function Validate(id){
+		var validated = true;
+		$.each($('#' + id + ' .required'), function(e){
+			if($(this).val() == ''){
+				validated = false;
+				$(this).closest('.form-group').removeClass('has-success');
+				$(this).closest('.form-group').addClass('has-error');
+			}
+			else{
+				$(this).closest('.form-group').removeClass('has-error');
+				$(this).closest('.form-group').addClass('has-success');
+			}
+		});
+		return validated;
+	}
+
 
 
 	
