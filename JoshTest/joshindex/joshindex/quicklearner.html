@@ -1,5 +1,6 @@
 <html>
     <head>
+    	<title>Quick Learner</title>
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -23,7 +24,7 @@
 	         			<li><a href="modotcareer.html">MoDOT Career</a></li>
 	         			<li><a href="cityofmoberlycareer.html">City of Moberly Career</a></li>
 	         			<li><a href="gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
-	         			 <li><a href="jsplay2.html">Messin Around</a></li>
+	         			<li><a href="jsplay2.html">Messin Around</a></li>
 	         		</ul>
 	         	</div>
 			</div>
@@ -33,7 +34,7 @@
         	<button id="sales" class="jobButtn">Sales People</button><br>
         	<button id="jrDev" class="jobButtn">Aspiring Developer</button><br>
         	<button id="MoBoss" class="jobButtn">Shed Supervisor</button><br>
-        	<button type="button" class="jobButtn" data-toggle="modal" data-target="#adNameSalary">Add Name and Salary</button>
+        	<button type="button" class="jobButtn noDanger" data-toggle="modal" data-target="#adNameSalary">Add Name and Salary</button>
         </div>
         <div class="modal fade" id="adNameSalary"  role="dialog" data-backdrop="static">
         	<div class="modal-dialog">
@@ -124,12 +125,14 @@ $.ajax({
 	// $(document).delegate('#MoBoss', 'click', function(event){
 	// 	alert(ShednumberOnes)
 	// });
+	
 	$(document).delegate('.jobButtn', 'click', function(event){
+		console.log('dfs');
 		var id = $(this).attr('id');
 		var alertText = '';
+		addDangerClass(id);
 		switch(id){
 			case 'Developers':
-		
 			$.each(vCreativePeeps, function(k, v){
 				$.each(v.people, function(key,val){
 					if(val.job == 'Dev'){
@@ -162,20 +165,19 @@ $.ajax({
 			});
 				break;
 			case 'MoBoss':
-			$.each(ModotPeeps, function(k, v){
-				$.each(v.people, function(key, val){
-					if(val.job == 'boss man'){
-						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
-							'</td></tr>');
-					}
+				$.each(ModotPeeps, function(k, v){
+					$.each(v.people, function(key, val){
+						if(val.job == 'boss man'){
+							$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+								'</td></tr>');
+						}
+					});
 				});
-			});
-				break;
-			default:
-				
 				break;
 		}
+		
 	});
+	
 	$(document).delegate('.salaryClose', 'click', function(event){
 		$('.modalInput').val("");
 	});
@@ -200,7 +202,7 @@ $.ajax({
 			if($('#ExperiencedSalary').val() != ''){
 				ExperiencedSalary = $('#ExperiencedSalary').val();
 			}
-			$('#tableStuff').append('<tr><td>' + SalaryName + '</td><td>' + StartingSalary + '</td><td>' + MediumSalary + '</td><td>' + ExperiencedSalary + '</td></tr>');
+			$('#tableStuff').append('<tr><td>' + SalaryName + '</td><td>' + '$' + StartingSalary + '</td><td>' +  '$' + MediumSalary + '</td><td>' + '$' + ExperiencedSalary + '</td></tr>');
 			$('.salaryClose').click();
 		}
 	
@@ -221,8 +223,19 @@ $.ajax({
 		return validated;
 	}
 
+	 function addDangerClass(id){
+		// $('#' + id).attr('disabled', true)
+		// 	.addClass('btn-danger');
+		$.each($('.jobButtn'), function(event){
+			if($(this).attr('id') == id && $(this).hasClass('noDanger') == false){
+				$(this).addClass('btn-danger')
+						.prop('disabled', true);
+			}
+		});
 
+	}
 
+// make some check boxes in the modal and on click of submit button know what to do with them... put them on the table possibly
 	
 </script>
 
