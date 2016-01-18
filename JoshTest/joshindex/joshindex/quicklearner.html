@@ -48,17 +48,14 @@
         					<label for="name">Name</label>
         					<input type="text" class="form-control modalInput required" id="SalaryName">
         				</div>
-        				<div class="form-group">
-        					<label for="startingSalary">Starting Salary</label>.
-        					<input type="text" class="form-control modalInput required" id="StartingSalary">
+        				<div class="checkbox">
+        					<label><input type='checkbox' class='ExperienceCheckBox' value='47000'>No Experience</label>
         				</div>
-        				<div class="form-group">
-        					<label for="mediumSalary">Medium Salary</label>.
-        					<input type="text" class="form-control modalInput" id="MediumSalary">
+        				<div class="checkbox">
+        					<label><input type='checkbox' class='ExperienceCheckBox' value='94000'>Experienced</label>
         				</div>
-        				<div class="form-group">
-        					<label for="experiencedSalary">Experienced Salary</label>.
-        					<input type="text" class="form-control modalInput" id="ExperiencedSalary">
+        				<div class='checkbox'>
+        					<label><input type='checkbox' class='ExperienceCheckBox' value='188000'>Veteran</label>
         				</div>
         			</div>
         			<div class="modal-footer">
@@ -72,9 +69,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Starting Salary</th>
-                    <th>Medium Salary</th>
-                    <th>Experienced Salary</th>
+                    <th>Salary</th>
                 </tr>
             </thead>
             <tbody id = 'tableStuff'>
@@ -126,8 +121,8 @@ $.ajax({
 	// 	alert(ShednumberOnes)
 	// });
 	
+
 	$(document).delegate('.jobButtn', 'click', function(event){
-		console.log('dfs');
 		var id = $(this).attr('id');
 		var alertText = '';
 		addDangerClass(id);
@@ -136,8 +131,7 @@ $.ajax({
 			$.each(vCreativePeeps, function(k, v){
 				$.each(v.people, function(key,val){
 					if(val.job == 'Dev'){
-						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
-							'</td></tr>');
+						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].experienced + '</td></tr>');
 					}
 				});
 			});
@@ -147,7 +141,7 @@ $.ajax({
 			$.each(vCreativePeeps, function(k, v){
 				$.each(v.people, function(key, val){
 					if(val.job == 'Sales'){
-						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
 							'</td></tr>');
 					}
 				});
@@ -158,7 +152,7 @@ $.ajax({
 			$.each(ModotPeeps, function(k, v){
 				$.each(v.people, function(key, val){
 					if(val.job == 'Sign guy'){
-						$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+						$('#tableStuff').append('<tr><td>' + key + '</td><td>' +  ' $' + v.salaries[val.job].experienced + 
 							'</td></tr>');
 					}
 				});	
@@ -168,7 +162,7 @@ $.ajax({
 				$.each(ModotPeeps, function(k, v){
 					$.each(v.people, function(key, val){
 						if(val.job == 'boss man'){
-							$('#tableStuff').append('<tr><td>' + key + '</td><td>' + ' $' + v.salaries[val.job].starting +  '</td><td>' + ' $' + v.salaries[val.job].medium + '</td><td>' + ' $' + v.salaries[val.job].experienced + 
+							$('#tableStuff').append('<tr><td>' + key + '</td><td>' +  ' $' + v.salaries[val.job].experienced + 
 								'</td></tr>');
 						}
 					});
@@ -182,29 +176,37 @@ $.ajax({
 		$('.modalInput').val("");
 	});
 	$(document).delegate('#submitBtn', 'click', function(event){
+		var value = CheckBoxFunction();
 		if(Validate('adNameSalary') == false){
 			toastr.error('Missing Required Field');
+			return;
 		}
-		else{
-			var SalaryName = 'Undefined';
-			var StartingSalary = 'Undefined';
-			var MediumSalary = 'Undefined';
-			var ExperiencedSalary = 'Undefined';
-			if($('#SalaryName').val() != ''){
-				SalaryName = $('#SalaryName').val();
-			}
-			if($('#StartingSalary').val() != ''){
-				StartingSalary = $('#StartingSalary').val();
-			}
-			if($('#MediumSalary').val() != ''){
-				MediumSalary = $('#MediumSalary').val();
-			}
-			if($('#ExperiencedSalary').val() != ''){
-				ExperiencedSalary = $('#ExperiencedSalary').val();
-			}
-			$('#tableStuff').append('<tr><td>' + SalaryName + '</td><td>' + '$' + StartingSalary + '</td><td>' +  '$' + MediumSalary + '</td><td>' + '$' + ExperiencedSalary + '</td></tr>');
-			$('.salaryClose').click();
+		if(!isNaN(value)){
+			value = '$' + value;
 		}
+		SalaryName = $('#SalaryName').val();
+		$('#tableStuff').append('<tr><td>' + SalaryName + '</td><td>'  + value + '</td></tr>');
+		$('.salaryClose').click();
+		// else{
+		// 	var SalaryName = 'Undefined';
+		// 	var StartingSalary = 'Undefined';
+		// 	var MediumSalary = 'Undefined';
+		// 	var ExperiencedSalary = 'Undefined';
+		// 	if($('#SalaryName').val() != ''){
+		// 		SalaryName = $('#SalaryName').val();
+		// 	}
+		// 	if($('#StartingSalary').val() != ''){
+		// 		StartingSalary = $('#StartingSalary').val();
+		// 	}
+		// 	if($('#MediumSalary').val() != ''){
+		// 		MediumSalary = $('#MediumSalary').val();
+		// 	}
+		// 	if($('#ExperiencedSalary').val() != ''){
+		// 		ExperiencedSalary = $('#ExperiencedSalary').val();
+		// 	}
+		// 	$('#tableStuff').append('<tr><td>' + SalaryName + '</td><td>' + '$' + StartingSalary + '</td><td>' +  '$' + MediumSalary + '</td><td>' + '$' + ExperiencedSalary  + '</td></tr>');
+		// 	$('.salaryClose').click();
+		// }
 	
 	});
 	function Validate(id){
@@ -234,6 +236,22 @@ $.ajax({
 		});
 
 	}
+
+	$(document).delegate('.ExperienceCheckBox', 'click', function(){
+		$('.ExperienceCheckBox').prop('checked', false);
+		$(this).prop('checked', true);
+	});
+
+	function CheckBoxFunction(){
+		var value = 'none ya business';
+		$.each($('.ExperienceCheckBox'), function(k, v){
+			if($(this).prop('checked')== true){
+				value = $(this).val();
+			}
+		})
+		return value;
+	};
+	
 
 // make some check boxes in the modal and on click of submit button know what to do with them... put them on the table possibly
 	

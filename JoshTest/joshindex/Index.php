@@ -25,9 +25,9 @@
 	// Button click for get number
 	$(document).delegate('.get_num_btn', 'click', function(event) {
 		var numid = $(this).data('num-id');
-		console.log(numid);
+		// console.log(numid);
 		var numid2 = $(event.target).data('some_id');
-		console.log(numid2);
+		// console.log(numid2);
 		get_num(true);
 	});
 
@@ -68,7 +68,7 @@
 	// This function should alert 'Yep, thats my name, dont wear it out'
 	function get_name(names) {
 		names.forEach(function(name) {
-			console.log(name);
+			// console.log(name);
 			if(name == 'josh') {
 				alert('Yep, thats my name, dont wear it out');
 			}
