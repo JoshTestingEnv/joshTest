@@ -4,21 +4,22 @@
         <meta charset ="utf-8">
         <title>Loyal</title>
         <link rel='stylesheet' type='text/css' href='css/bootstrap.css'>
+        <link rel="stylesheet" type="text/css" href="Css/mycss.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Loyal!</h1>
+        <h1 class='header1'>Loyal!</h1>
         <nav class="navbar navbar-inverse navbar-fixed-top" "padding:25px">
             <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="joshindex.html">Josh Schauer's Resume</a>
+                <a class="navbar-brand" href="../joshindex.html">Josh Schauer's Resume</a>
             </div>
                 <div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="joshindex.html">Home</a></li>
+                        <li class="active"><a href="../joshindex.html">Home</a></li>
                         <li><a href="modotcareer.html">MoDOT Career</a></li>
                         <li><a href="cityofmoberlycareer.html">City of Moberly Career</a></li>
                         <li><a href="gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
@@ -26,9 +27,20 @@
                 </div>
             </div>
         </nav>
-                <p>Throughout the eleven years I have been in the workfoce, I have only held three jobs. I have worked at each of these jobs longer than two years. Currently I have been employed for seven years. This shows how loyal to these companies I have been. Adding to that in June I will have been married to my lovely wife for eight years, I am at the young age of twenty-seven.  All of these I believe prove my loyalty!</p>
+        <div class='col-md-7' id='MainParagraphLoyal'></div>
     </body>
 </html>
+<script>
+var LoyalIntroWords = 'Throughout the eleven years I have been in the workfoce, I have only held three jobs. I have worked at each of these jobs longer than two years. Currently I have been employed for seven years. This shows how loyal to these companies I have been. Adding to that in June I will have been married to my lovely wife for eight years, I am at the young age of twenty-seven.  All of these I believe prove my loyalty!'
+MainParagraphfilling();
+
+function MainParagraphfilling(){
+    $('#MainParagraphLoyal').html(LoyalIntroWords);
+};
+
+
+</script>
+
 
 
 

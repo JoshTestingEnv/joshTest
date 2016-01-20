@@ -1,9 +1,13 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="Css/mycss.css">
+        <title>People Oriented</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="Css/mycss.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -18,7 +22,7 @@
          		<ul class="nav navbar-nav">
          			<li class="active"><a href="../joshindex.html">Home</a></li>
          			<li><a href="modotcareer.html">MoDOT Career</a></li>
-         			<li><a href="cityofmoberly.html">City of Moberly Career</a></li>
+         			<li><a href="cityofmoberlycareer.html">City of Moberly Career</a></li>
          			<li><a href="gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
          		</ul>
             </div>
@@ -30,16 +34,58 @@
     		<h1 class="header1">People Oriented</h1>
     	 	 	<div class="col-md-4" id="firstParagarph"></div>
                 <div class="col-md-4">
-                    <iframe width="420" height="315" src="https://www.youtube.com/embed/?v=AdidovCPhVM" frameborder="0" allowfullscreen=""></iframe>
+                    <button class='addUserBtn' data-toggle="modal" data-target="#adUser">Add User</button> 
                 </div>
-    			<div class="col-md-4" style="background-color:light grey">
+    			<div class="col-md-4">
     				<img src='https://scontent.xx.fbcdn.net/hphotos-frc3/v/t1.0-9/1175470_10151631338806824_992984613_n.jpg?oh=5f28044daae83f294701eb995f38232c&oe=56EBDC7F' class='img-circle' alt="Thats Me" width="150" height="300" padding-top="120px" >
     			</div>
+                <div id="adUser" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close salaryClose" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">New User</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control modalInput required" id="UserName">
+                            </div>
+                             <div class="form-group">
+                                <label for="name">Email</label>
+                                <input type="text" class="form-control modalInput required" id="email">
+                            </div>
+                             <div class="form-group">
+                                <label for="name">Address</label>
+                                <input type="text" class="form-control modalInput required" id="Address">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id='submitBtn2' class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     	</div>
     </body>
 </html>
 <script>
-var IntroWords="I have the tendancy to be able to get along with anyone.Finding people who are easy to talk to and classyis somewhat hard to do these days.  However I was raised with the mindset to iniate respect not demand it."
+var NewUsers = [];
+var IntroWords="I have the tendancy to be able to get along with anyone.Finding people who are easy to talk to and classy is somewhat hard to do these days.  However I was raised with the mindset to iniate respect not demand it."
                     $('#firstParagarph').html(IntroWords);
+
+var url = 'myDatabase.php';
+    $.ajax({
+    url: url, 
+    dataType: 'json',
+    success:function(data){
+   console.log(data);
+    }
+});
+    $(document).delegate('#submitBtn2', 'click', function(){
+        (NewUsers).push(value);
+        console.log('yup');
+    });
+    // use this modal to add new users to an array, then do something with the arrray.
 </script>
 
