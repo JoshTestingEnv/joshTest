@@ -31,7 +31,7 @@
 	         	<div>
 	         		<ul class="nav navbar-nav">
 	         			<li class="myTabs"><a href="../joshindex.html">Home</a></li>
-	         			<li class="active myTabs"><a href="modotcareer.html">Football Players Current and Famous</a></li>
+	         			<li class="active myTabs"><a href="modotcareer.html">Find Playas</a></li>
 	         			<li class="myTabs"><a href="cityofmoberlycareer.html">City of Moberly Career</a></li>
 	         			<li class="myTabs"><a href="gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
 	         		</ul>
@@ -39,7 +39,7 @@
 	    	</div>
 	    </nav>
 	<div class='container'>
-		<h1 class='footballHeader'>Find Some Players</h1>
+		<h1 class='footballHeader'>Playas Will Be Displayed In Table</h1>
 		<div class='col-md-2'></div>
 		<div class='col-md-8'>
 			<h3>Offense or Defense</h3>
@@ -63,7 +63,18 @@
 					<option value='Famous'>Famous</option>
 				</select>
 			</div>
-			<button id="findPlayas">Find Players</button>
+			
+			<!-- <button id="findPlayas" class="btn btn-default btn-md">Find Players</button> -->
+			<table id='playaTable' class='table table-condensed'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Team</th>
+                </tr>
+            </thead>
+            <tbody id = 'tableStuff'>
+          </tbody>
+        </table>
 		</div>
 		<div class='col-md-2'></div>
 	</div>
@@ -73,9 +84,279 @@
 
 </html>
 <script>
+var playa_array = [
+ Russel Wilson = {
+ 	position: Quarterback, 
+ 	team: SEA, 
+ 	status: current
+ 		},
+ Tom Brady = {
+ 	position: Quarterback, 
+ 	team: NE, 
+ 	status: current
+ 		},
+ Drew Brees = {
+ 	position: Quarterback,
+ 	team: NO,
+ 	status: current
+ 		},
+ Aaron Rodgers = {
+ 	position: Quarterback,
+ 	team: GB,
+ 	status: current
+ 		},
+ Ben Roethlisberger = {
+ 	position: Quarterback,
+ 	team: PIT,
+ 	status: current
+ 		},
+ Steve Young = {
+ 	position: Quarterback,
+ 	team: SF,
+ 	status: Famous
+ 		},
+ Troy Aikman = {
+ 	position: Quarterback,
+ 	team: DAL,
+ 	status: Famous
+ 		},
+ Roger Staubach = {
+ 	position: Quarterback,
+ 	team: DAL,
+ 	status: Famous
+ 		},
+ Jordy Nelson = {
+ 	position: WideRecievers,
+ 	team: GB,
+ 	status: current
+ 		},
+ Jerry Rice = {
+ 	position: WideRecievers,
+ 	team: SF,
+ 	status: Famous
+ 		},
+ Odell Beckham Jr = {
+ 	position: WideRecievers,
+ 	team: NYG,
+ 	status: current
+ 		},
+ Antonio Brown = {
+ 	position: WideRecievers,
+ 	team: PIT,
+ 	status: current
+ 		},
+ Julian Edelman = {
+ 	position: WideRecievers,
+ 	team: NE,
+ 	status: current
+ 		},
+ Randy Moss = {
+ 	position: WideRecievers,
+ 	team: NE,
+ 	status: Famous
+ 		},
+ Michael Irvin = {
+ 	position: WideRecievers,
+ 	team: DAL,
+ 	status: Famous
+ 		},
+ Marshawn Lynch = {
+ 	position: RunningBacks,
+ 	team: SEA,
+ 	status: current
+ 		},
+ Adrian Peterson = {
+ 	position: RunningBacks,
+ 	team: MIN,
+ 	status: current
+ 		},
+ Barry Sanders = {
+ 	position: RunningBacks,
+ 	team: DET,
+ 	status: Famous
+ 		},
+ Walter Payton = {
+ 	position: RunningBacks,
+ 	team: CHI,
+ 	status: Famous
+ 		},
+ LaDanian Tomlinson = {
+ 	position: RunningBacks,
+ 	team: SD,
+ 	status: Famous
+ 		},
+ Eddie Lacy = {
+ 	position: RunningBacks,
+ 	team: GB,
+ 	status: current
+ 		},
+ DeAngelo Williams = {
+ 	position: RunningBacks,
+ 	team: PIT,
+ 	status: current
+ 		},
+ Devonta Freeman = {
+ 	position: RunningBacks,
+ 	team: ATL,
+ 	status: current
+ 		},
+ Rob Gronkowski = {
+ 	position: TightEnd,
+ 	team: NE,
+ 	status: current
+ 		},
+ Jason Witten = {
+ 	position: TightEnd,
+ 	team: DAL,
+ 	status: current
+ 		},
+ Jimmy Graham = {
+ 	position: TightEnd,
+ 	team: SEA,
+ 	status: current
+ 		},
+ Greg Olsen = {
+ 	position: TightEnd,
+ 	team: CAR,
+ 	status: current
+ 		},
+ Tony Gonzalez = {
+ 	position: TightEnd,
+ 	team: KC,
+ 	status: Famous
+ 		},
+ Mike Ditka = {
+ 	position: TightEnd,
+ 	team: CHI,
+ 	status: Famous
+ 		},
+ Shannon Sharpe = {
+ 	position: TightEnd,
+ 	team: DEN,
+ 	status: Famous
+ 		},
+ Clay Matthews = {
+ 	position: Linebacker,
+ 	team: GB,
+ 	status: current
+ 		},
+ Ray Lewis = {
+ 	position: Linebacker,
+ 	team: BAL,
+ 	status: Famous
+ 		},
+ Ray Nitschke = {
+ 	position: Linebacker,
+ 	team: GB,
+ 	status: Famous
+ 		},
+ Jerod Mayo = {
+ 	position: Linebacker,
+ 	team: NE,
+ 	status: current
+ 		},
+ Sean Weatherspoon = {
+ 	position: Linebacker,
+ 	team: ATL,
+ 	status: current
+ 		},
+ Karlos Dansby = {
+ 	position: Linebacker,
+ 	team: MIA,
+ 	status: current
+ 		},
+ Brian Orakpo = {
+ 	position: Linebacker,
+ 	team: WAS,
+ 	status: current
+ 		},
+ Deion Sanders = {
+ 	position: CornerBack,
+ 	team: DAL,
+ 	status: Famous
+ 		},
+ Ha Ha Clinton Dix = {
+ 	position: CornerBack,
+ 	team: GB,
+ 	status: current
+ 		},
+ Charles Woodson = {
+ 	position: CornerBack,
+ 	team: GB,
+ 	status: Famous
+ 		},
+ Patrick Pederson = {
+ 	position: CornerBack,
+ 	team: ARZ,
+ 	status: current
+ 		},
+ Darrele Revis = {
+ 	position: CornerBack,
+ 	team: NYJ,
+ 	status: current
+ 		},
+ Darrell Green = {
+ 	position: CornerBack,
+ 	team: WAS,
+ 	status: Famous
+ 		},
+ Ronnie Lott = {
+ 	position: Safety,
+ 	team: SF,
+ 	status: Famous
+ 		},
+ Troy Polamalu = {
+ 	position: Safety,
+ 	team: PIT,
+ 	status: Famous
+ 		},
+ Steve Atwater = {
+ 	position: Safety,
+ 	team: DEN,
+ 	status: Famous
+ 		},
+ Darren Sharper = {
+ 	position: Safety,
+ 	team: GB,
+ 	status: Famous
+ 		},
+ Eric Berry = {
+ 	position: Safety,
+ 	team: KC,
+ 	status: current
+ 		},
+ Earl Thomas = {
+ 	position: Safety,
+ 	team: SEA,
+ 	status: current
+ 		},
+ Tyrann Mathieu = {
+ 	position: Safety,
+ 	team: ARZ,
+ 	status: current
+ 		}
+];
+
+$(document).delegate('#findPlaya', 'click', function() {
+ var position = $('#playerPosition').val();
+ var status = $('#playerStatus').val();
+ $.each(playa_array, function(k,v) {
+  if(v.position == position) {
+   if(v.status == status) {
+    //append to table that doesn't exist yet
+    // k is name
+    // v is info
+    $('#table').append('<tr><td>' + k + '</td><td>' + v.team + '</td></tr>');
+   
+   		}
+  }
+ })
+});
+
+
 $(document).delegate('#OffenseDefense', 'change', function(e){
 	var sides = $(this).val();
-	var offenseArray = ["Quarterback", "WideRecievers", "RunningBacks", "TightEnd", "OffensiveLine"];
+	var offenseArray = ["Quarterback", "WideRecievers", "RunningBacks", "TightEnd"];
 	var defenseArray = ["Linebacker", "Safety", "CornerBack"];
 	console.log(sides);
 	if(sides == 'Offense'){

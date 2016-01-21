@@ -8,6 +8,13 @@
         color:white;
         font-family: arial;
     }
+    #findPlayas{
+        width:75%;
+        padding:100px;
+        text-align: center;
+        color:grey;
+        font-family: arial
+    }
     .jobButtn{
         vertical-align: middle;
         -webkit-transition-duration:0.4s;
