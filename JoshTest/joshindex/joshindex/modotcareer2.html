@@ -1,0 +1,105 @@
+<html>
+	<head>
+	  <meta charset ="utf-8">
+	  <title>Modot Career</title>
+	  <link rel='stylesheet' type='text/css' href='css/bootstrap.css'>
+	  <link rel='stylesheet' type='text/css' href='Css/mycss.css'>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+			/*<style>
+					body{ 
+  	  					background-image:url("img/packers_web_background.jpg");
+
+  						}
+					h1{
+					text-align:center;
+				  	font-family:arial;
+				  	font-size: 100px;
+				  	color: silver;
+				  	padding-top:45px;
+ 	 		          }
+			</style>*/
+	<body class="footballBody">
+		<nav class="navbar navbar-inverse navbar-fixed-top" "padding:25px">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		        	<a class="navbar-brand" href="../joshindex.html">Josh Schauer's Resume</a>
+		        </div>
+	         	<div>
+	         		<ul class="nav navbar-nav">
+	         			<li class="myTabs"><a href="../joshindex.html">Home</a></li>
+	         			<li class="active myTabs"><a href="modotcareer.html">Football Players Current and Famous</a></li>
+	         			<li class="myTabs"><a href="cityofmoberlycareer.html">City of Moberly Career</a></li>
+	         			<li class="myTabs"><a href="gallowaylumbercompany.html">Galloway Lumber Company Career</a></li>
+	         		</ul>
+	         	</div>
+	    	</div>
+	    </nav>
+	<div class='container'>
+		<h1 class='footballHeader'>Find Some Players</h1>
+		<div class='col-md-2'></div>
+		<div class='col-md-8'>
+			<h3>Offense or Defense</h3>
+			<div style="width:100%;">
+				<select id="OffenseDefense" style="width:50%; background-color:grey;">
+						<option value=""> </option>
+						<option value='Offense'>Offense</option>
+						<option value='Defense'>Defense</option>
+				</select>
+			</div>
+			<h3>Position</h3>
+			<div style="width:100%;">
+				<select id="playerPosition" style="width:50%;">
+					
+				</select>
+			</div>
+			<h3>Current or Famous</h3>
+			<div style="width:100%;">
+				<select id="playerStatus" style="width:50%;">
+					<option value='Current'>Current</option>
+					<option value='Famous'>Famous</option>
+				</select>
+			</div>
+			<button id="findPlayas">Find Players</button>
+		</div>
+		<div class='col-md-2'></div>
+	</div>
+	
+
+	</body>
+
+</html>
+<script>
+$(document).delegate('#OffenseDefense', 'change', function(e){
+	var sides = $(this).val();
+	var offenseArray = ["Quarterback", "WideRecievers", "RunningBacks", "TightEnd", "OffensiveLine"];
+	var defenseArray = ["Linebacker", "Safety", "CornerBack"];
+	console.log(sides);
+	if(sides == 'Offense'){
+		// $('#playerPosition').append('
+		// 	<option value="Quarterback">Quarterback</option>\
+		// 	<option value="WideRecievers">Wide Recievers</option>\
+		// 	<option value="RunningBacks">Running Backs</option>\
+		// 	<option value="TightEnd">Tight End</option>\
+		// 	<option value="OffensiveLine">OffensiveLine</option>\
+		// 	');
+		$.each(offenseArray, function(k, v){
+			$('#playerPosition')
+		         .append($("<option></option>")
+		         .attr("value",v)
+		         .text(v));
+		})
+	}
+	else{
+		$.each(defenseArray, function(k, v){
+			$('#playerPosition')
+		         .append($("<option></option>")
+		         .attr("value",v)
+		         .text(v));
+		});
+	}
+});
+</script>

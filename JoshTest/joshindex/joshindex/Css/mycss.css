@@ -68,6 +68,16 @@
         font-size: 75px;
         color:white;
         }
+    .footballHeader{
+        padding-top:30px;
+        padding-bottom:30px;
+        padding-right:45px;
+        padding-left: 45px;
+        text-align:center;
+        font-family:courier;
+        font-size: 75px;
+        color:white;
+        }
     h2{
         color:silver;
         }   
